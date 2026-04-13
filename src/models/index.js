@@ -18,6 +18,8 @@ const db = {
   User: require('./user.model')(sequelize, Sequelize),
   Quiz: require('./quiz.model')(sequelize, Sequelize),
   Question: require('./question.model')(sequelize, Sequelize),
+  Session: require('./session.model')(sequelize, Sequelize),
+  Attempt: require('./attempt.model')(sequelize, Sequelize),
 };
 
 // Set up associations

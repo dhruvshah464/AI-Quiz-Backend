@@ -5,9 +5,21 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+    sessionId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+    },
     userId: {
       type: DataTypes.UUID,
-      allowNull: false,
+      allowNull: true,
+    },
+    title: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    topics: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: [],
     },
     subject: {
       type: DataTypes.STRING,
@@ -37,6 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    performanceData: {
+      type: DataTypes.JSONB,
+      defaultValue: {},
+    },
   });
 
   Quiz.associate = (models) => {
@@ -47,6 +63,10 @@ module.exports = (sequelize, DataTypes) => {
     Quiz.hasMany(models.Question, {
       foreignKey: 'quizId',
       as: 'questions',
+    });
+    Quiz.hasMany(models.Attempt, {
+      foreignKey: 'quizId',
+      as: 'attempts',
     });
   };
 

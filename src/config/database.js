@@ -1,15 +1,11 @@
 const { Sequelize } = require('sequelize');
 require('dotenv').config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'quiz_app',
-  process.env.DB_USER || 'postgres',
-  process.env.DB_PASSWORD || 'postgres',
-  {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: 'postgres',
-    logging: false,
-  }
-);
+// Use SQLite for easier local development
+const sequelize = new Sequelize({
+  dialect: 'sqlite',
+  storage: './quiz.db',
+  logging: console.log,
+});
 
 module.exports = sequelize;

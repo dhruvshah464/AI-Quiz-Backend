@@ -10,19 +10,20 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       unique: true,
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     email: {
       type: DataTypes.STRING,
       allowNull: true,
+      unique: true,
       validate: {
         isEmail: {
           msg: 'Invalid email format',
           args: true,
         },
       },
+    },
+    password: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     gradeLevel: {
       type: DataTypes.INTEGER,
@@ -40,6 +41,11 @@ module.exports = (sequelize, DataTypes) => {
           msg: 'Grade level must be at most 12',
         },
       },
+    },
+    googleId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
     },
   });
 
